@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICat } from 'src/app/share/interfaces/cat.interface';
 import { DataCatsService } from 'src/app/share/services/data-cats.service';
+import { Iexample } from '../filter/filter.component';
 
 @Component({
   selector: 'app-cats',
@@ -23,5 +24,9 @@ export class CatsComponent implements OnInit { // Не забудь добави
     this.catsApi.getCats(this.countCats).subscribe((response: ICat[]) => {
       this.cats = response;
     });
+  }
+
+  public someMethod(event: Iexample) {
+    this.catsApi.getCatsByBreed(event.amountCats, event.currentBreed).subscribe((response) => this.cats = response);
   }
 }

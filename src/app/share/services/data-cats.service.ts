@@ -20,11 +20,19 @@ export class DataCatsService {
     });
   }
 
-  public getCatsBreed(countCats: number, breedCat: string): Observable<ICat[]> {
+  public getCatsByBreed(countCats: number, breedCat: string): Observable<ICat[]> {
     return this.http.get<ICat[]>(`https://api.thecatapi.com/v1/images/search?limit=${countCats}&breed_ids=${breedCat}`, {
       headers: {
         'x-api-key': environment.API_KEY
       }
     });
+  }
+
+  public getCatBreeds(): Observable<any> {
+    return this.http.get(`https://api.thecatapi.com/v1/breeds/`, {
+      headers: {
+        'x-api-key': environment.API_KEY
+      }
+    })
   }
 };

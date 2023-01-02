@@ -1,1 +1,16 @@
-<p>filter works!</p>
+<form class="form" [formGroup]="forms">
+  <mat-form-field appearance="fill">
+    <mat-label>Breed</mat-label>
+    <mat-select formControlName="breed">
+      <mat-option *ngFor="let breed of breeds" (click)="getCatsByBreed()" [value]="breed.id">
+        {{ breed.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <mat-label>Amount cats</mat-label>
+    <input matInput placeholder="Ex. Pizza" formControlName="amountCats" type="number" /> <!--Убери корявые стрелки у инпута-->
+  </mat-form-field>
+</form>
+<!-- Обязательно потом ввернись и переименуй эту залупу ну и стилизуй чутка-->
