@@ -1,5 +1,5 @@
 <div class="container">
-  <app-filter (fields)="someMethod($event)"></app-filter>
+  <app-filter (dataFilter)="getCatsByBreed($event)"></app-filter>
   <div class="cats" *ngFor="let cat of cats">
     <img class="cat-image" src="{{ cat.url }}" alt="cat" />
   </div>

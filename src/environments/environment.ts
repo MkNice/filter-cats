@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   API_KEY: 'live_HnYpwMUw3HT7Tn4bB5OxQr3fw6kORhhL8PQ4wCj4ebMSHlR5ltL6hpYLItGaa4xi',
+  SERVER_URL: 'https://api.thecatapi.com/v1/',
+  DEFAULT_AMOUNT_CATS: 10,
 };
 
 /*

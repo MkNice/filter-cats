@@ -1,48 +1,35 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataCatsService } from 'src/app/share/services/data-cats.service';
+import { ICatBreed } from 'src/app/share/interfaces/cat-breed.interface';
+import { IFilter } from 'src/app/share/interfaces/filter.interface';
+import { environment } from 'src/environments/environment';
 
-
-export interface Iexample {
-  amountCats: number,
-  currentBreed: string,
-}
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
 
+export class FilterComponent {
+  @Output() dataFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
-export class FilterComponent implements OnInit {
-  @Output() fields: EventEmitter<Iexample> = new EventEmitter<Iexample>();
+  public catBreeds: ICatBreed[] = [];
 
-  public breeds: any[] = []; //Фиксани потом any
-
-  public cats: unknown[] = [];
-  public forms: FormGroup = new FormGroup({
+  public filterForm: FormGroup = new FormGroup({
     breed: new FormControl(''),
-    amountCats: new FormControl(10, [
+    amountCats: new FormControl(environment.DEFAULT_AMOUNT_CATS, [
       Validators.min(1),
       Validators.max(20),
     ])
   });
 
-  constructor(private catsApi: DataCatsService) { }
+  public defaultFilterBreed: string = '';
 
-  public ngOnInit(): void {
-    this.getBreed();
-  }
+  public emitFilterData(): void {
+    const currentBreed = this.filterForm.value.breed;
+    const amountCats = this.filterForm.value.amountCats;
 
-  public getBreed(): void {
-    this.catsApi.getCatBreeds().subscribe((response) => this.breeds = response);
-  }
-
-  public getCatsByBreed(): void {
-    const currentBreed = this.forms.value.breed;
-    const amountCats = this.forms.value.amountCats;
-
-    this.fields.next({
+    this.dataFilter.next({
       amountCats: amountCats,
       currentBreed: currentBreed
     }

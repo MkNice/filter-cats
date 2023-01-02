@@ -1,16 +1,29 @@
-<form class="form" [formGroup]="forms">
+<form
+  class="form-filter"
+  [formGroup]="filterForm"
+  (ngSubmit)="emitFilterData()"
+>
   <mat-form-field appearance="fill">
     <mat-label>Breed</mat-label>
     <mat-select formControlName="breed">
-      <mat-option *ngFor="let breed of breeds" (click)="getCatsByBreed()" [value]="breed.id">
+      <mat-option [value]="defaultFilterBreed">All</mat-option>
+      <mat-option *ngFor="let breed of catBreeds" [value]="breed.id">
         {{ breed.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="input">
+  <mat-form-field>
     <mat-label>Amount cats</mat-label>
-    <input matInput placeholder="Ex. Pizza" formControlName="amountCats" type="number" /> <!--Убери корявые стрелки у инпута-->
+    <input
+      matInput
+      placeholder="Amount"
+      formControlName="amountCats"
+      type="number"
+    />
   </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="filterForm.invalid">
+    Ok
+  </button>
 </form>
-<!-- Обязательно потом ввернись и переименуй эту залупу ну и стилизуй чутка-->

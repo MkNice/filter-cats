@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ICat } from '../interfaces/cat.interface';
+import { ICatBreed } from '../interfaces/cat-breed.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +13,32 @@ export class DataCatsService {
 
   constructor(private http: HttpClient) { }
 
-  public getCats(countCats: number): Observable<ICat[]> {
-    return this.http.get<ICat[]>(`https://api.thecatapi.com/v1/images/search?limit=${countCats}`, {
+  public getCats(): Observable<[ICat[], ICatBreed[]]> {
+    const cats = this.http.get<ICat[]>(`${environment.SERVER_URL}images/search?limit=${environment.DEFAULT_AMOUNT_CATS}`, {
       headers: {
         'x-api-key': environment.API_KEY
       }
     });
+    const breeds = this.http.get<ICatBreed[]>(`${environment.SERVER_URL}breeds/`, {
+      headers: {
+        'x-api-key': environment.API_KEY
+      }
+    });
+
+    return forkJoin([cats, breeds]);
   }
 
   public getCatsByBreed(countCats: number, breedCat: string): Observable<ICat[]> {
-    return this.http.get<ICat[]>(`https://api.thecatapi.com/v1/images/search?limit=${countCats}&breed_ids=${breedCat}`, {
+    let breedQuerry = '';
+
+    if (breedCat) {
+      breedQuerry = `&breed_ids=${breedCat}`;
+    }
+
+    return this.http.get<ICat[]>(`${environment.SERVER_URL}images/search?limit=${countCats}${breedQuerry}`, {
       headers: {
         'x-api-key': environment.API_KEY
       }
     });
-  }
-
-  public getCatBreeds(): Observable<any> {
-    return this.http.get(`https://api.thecatapi.com/v1/breeds/`, {
-      headers: {
-        'x-api-key': environment.API_KEY
-      }
-    })
   }
 };
