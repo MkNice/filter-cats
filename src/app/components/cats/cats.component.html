@@ -1,1 +1,7 @@
-<p>cats works!</p>
+<div class="container">
+  <app-filter></app-filter>
+  <div class="cats" *ngFor="let cat of cats">
+    <img class="cat-image" src="{{ cat.url }}" alt="cat" />
+  </div>
+  <app-pagination></app-pagination>
+</div>
