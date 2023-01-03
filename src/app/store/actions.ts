@@ -1,11 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { ICatBreed } from '../share/interfaces/cat-breed.interface';
 import { ICat } from '../share/interfaces/cat.interface';
-
-export interface IParams {
-  countCats: number,
-  breedCat: string;
-}
+import { IParams } from '../share/interfaces/params.interface';
 
 export const getData = createAction('[Cats] Get Data');
 

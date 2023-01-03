@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/share/interfaces/app-state.interface';
 import { ICat } from 'src/app/share/interfaces/cat.interface';
 import { IFilter } from 'src/app/share/interfaces/filter.interface';

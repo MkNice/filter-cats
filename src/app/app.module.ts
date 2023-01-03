@@ -9,22 +9,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { environment } from '../environments/environment';
+
 import { reducers } from './store/reducers';
 import { CatsEffects } from './store/effects';
 
 import { AppComponent } from './app.component';
 import { CatsComponent } from './components/cats/cats.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatsComponent,
     FilterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

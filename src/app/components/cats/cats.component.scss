@@ -1,32 +1,17 @@
-header {
-  background-color: #987654;
-  width: 100%;
-  height: 100px;
-  h1 {
-    color: white;
-    font-size: 6em;
-    line-height: 1em;
-    text-shadow: 0 0 10px #000;
-    text-align: center;
-    font-family: Trattatello, fantasy;
-  }
-}
-
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  background-color: bisque;
-}
-.cats {
-  text-align: center;
-
-}
-.cat-image {
-  width: 350px;
-  height: 350px;
-  border-radius: 20px;
-  margin: 15px;
-  box-shadow: 0 0px 10px #000;
+  background-color: rgb(255, 228, 196);
+  .cats {
+    text-align: center;
+    .cat-image {
+      width: 350px;
+      height: 350px;
+      border-radius: 20px;
+      margin: 15px;
+      box-shadow: 0 0px 10px rgb(0, 0, 0);
+    }
+  }
 }
 
 @media screen and (max-width: 1550px) {
