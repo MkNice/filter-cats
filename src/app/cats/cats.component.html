@@ -1,0 +1,8 @@
+<app-header></app-header>
+<app-filter (dataFilter)="getCatsByBreed($event)"></app-filter>
+<div class="container">
+  <div class="cats" *ngFor="let cat of cats$ | async">
+    <img class="cat-image" src="{{ cat.url }}" alt="cat" />
+  </div>
+</div>
+<app-loader></app-loader>
