@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataCatsService } from 'src/app/share/services/data-cats.service';
+import { DataCatsService } from 'src/app/cats/services/data-cats.service';
 
 import { CatsComponent } from './cats.component';
 
@@ -8,13 +8,13 @@ xdescribe('CatsComponent', () => {
   let fixture: ComponentFixture<CatsComponent>;
 
   beforeEach(async () => {
-    const DataCatsServiceStub = {  }
+    const DataCatsServiceStub = {};
     await TestBed.configureTestingModule({
-      declarations: [ CatsComponent ],
+      declarations: [CatsComponent],
       providers: [{ provide: DataCatsService, useValue: DataCatsServiceStub }, {
       }],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CatsComponent);
     component = fixture.componentInstance;

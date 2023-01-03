@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IAppState } from 'src/app/share/interfaces/app-state.interface';
-import { ICatBreed } from 'src/app/share/interfaces/cat-breed.interface';
-import { IFilter } from 'src/app/share/interfaces/filter.interface';
+import { IAppState } from 'src/app/cats/interfaces/app-state.interface';
+import { ICatBreed } from 'src/app/cats/interfaces/cat-breed.interface';
+import { IFilter } from 'src/app/cats/interfaces/filter.interface';
 import { environment } from 'src/environments/environment';
-import { breedsSelector as catBreedsSelector } from 'src/app/store/selectors';
+import { breedsSelector as catBreedsSelector } from 'src/app/cats/store/selectors';
 import { Store } from '@ngrx/store';
 
 @Component({

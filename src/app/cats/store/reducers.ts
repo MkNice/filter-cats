@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ICatsState } from '../share/interfaces/cats-state.interface';
+import { ICatsState } from '../interfaces/cats-state.interface';
 import * as CatsActions from './actions';
 
 export const initialCatsState: ICatsState = {

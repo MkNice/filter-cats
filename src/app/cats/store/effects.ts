@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
-import { DataCatsService } from '../share/services/data-cats.service';
+import { DataCatsService } from '../services/data-cats.service';
 import * as CatsActions from './actions';
-
 
 @Injectable()
 

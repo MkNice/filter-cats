@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IAppState } from 'src/app/share/interfaces/app-state.interface';
-import { ICat } from 'src/app/share/interfaces/cat.interface';
-import { IFilter } from 'src/app/share/interfaces/filter.interface';
-import { catsSelector } from 'src/app/store/selectors';
-import * as CatsActions from 'src/app/store/actions';
+import { IAppState } from 'src/app/cats/interfaces/app-state.interface';
+import { ICat } from 'src/app/cats/interfaces/cat.interface';
+import { catsSelector } from 'src/app/cats/store/selectors';
+import * as CatsActions from 'src/app/cats/store/actions';
+import { IFilter } from './interfaces/filter.interface';
 
 @Component({
   selector: 'app-cats',
