@@ -10,12 +10,22 @@ import * as CatsActions from './actions';
 export class CatsEffects {
   constructor(private actions$: Actions, private catsService: DataCatsService) { }
 
-  getCats$ = createEffect(() =>
+  getData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CatsActions.getData),
       mergeMap(() => {
         return this.catsService.getCats().pipe(
-          map((cats) => CatsActions.getCatsSuccess({ data: cats })),
+          map((data) => CatsActions.getDataSuccess({ CatsAndBreeds: data })),
+          catchError((error) => of(CatsActions.getCatsError({ error: error.message }))));
+      }))
+  );
+
+  getCatsByBreed$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CatsActions.getCatsByBreed),
+      mergeMap((data) => {
+        return this.catsService.getCatsByBreed(data.params).pipe(
+          map((cats) => CatsActions.getCatsByBreedSuccess({ cats: cats })),
           catchError((error) => of(CatsActions.getCatsError({ error: error.message }))));
       }))
   );

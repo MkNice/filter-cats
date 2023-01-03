@@ -1,29 +1,36 @@
-<form
-  class="form-filter"
-  [formGroup]="filterForm"
-  (ngSubmit)="emitFilterData()"
->
-  <mat-form-field appearance="fill">
-    <mat-label>Breed</mat-label>
-    <mat-select formControlName="breed">
-      <mat-option [value]="defaultFilterBreed">All</mat-option>
-      <mat-option *ngFor="let breed of catBreeds | async" [value]="breed.id">
-        {{ breed.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="container">
+  <form
+    class="form-filter"
+    [formGroup]="filterForm"
+    (ngSubmit)="emitFilterData()"
+  >
+    <mat-form-field>
+      <mat-label>Breed</mat-label>
+      <mat-select formControlName="breed">
+        <mat-option [value]="defaultFilterBreed">All</mat-option>
+        <mat-option *ngFor="let breed of catBreeds | async" [value]="breed.id">
+          {{ breed.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Amount cats</mat-label>
-    <input
-      matInput
-      placeholder="Amount"
-      formControlName="amountCats"
-      type="number"
-    />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Amount cats</mat-label>
+      <input
+        matInput
+        placeholder="Amount"
+        formControlName="amountCats"
+        type="number"
+      />
+    </mat-form-field>
 
-  <button mat-raised-button type="submit" [disabled]="filterForm.invalid">
-    Ok
-  </button>
-</form>
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="filterForm.invalid"
+      class="btn"
+    >
+      Ok
+    </button>
+  </form>
+</div>

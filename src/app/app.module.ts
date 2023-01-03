@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +16,8 @@ import { CatsEffects } from './store/effects';
 import { AppComponent } from './app.component';
 import { CatsComponent } from './components/cats/cats.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,9 +29,10 @@ import { FilterComponent } from './components/filter/filter.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,

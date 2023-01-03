@@ -28,20 +28,17 @@ export class DataCatsService {
     return forkJoin([cats, breeds]);
   }
 
-  public getCatsByBreed(arg: { countCats: number, breedCat: string; }): any /*Observable<ICat[]>*/ {
-    console.log(arg);
+  public getCatsByBreed(params: { countCats: number, breedCat: string; }): Observable<ICat[]> {
+    let breedQuerry = '';
 
-    //   let breedQuerry = '';
+    if (params.breedCat) {
+      breedQuerry = `&breed_ids=${params.breedCat}`;
+    }
 
-    //   if (breedCat) {
-    //     breedQuerry = `&breed_ids=${breedCat}`;
-    //   }
-
-    //   return this.http.get<ICat[]>(`${environment.SERVER_URL}images/search?limit=${countCats}${breedQuerry}`, {
-    //     headers: {
-    //       'x-api-key': environment.API_KEY
-    //     }
-    //   });
-    // }
+    return this.http.get<ICat[]>(`${environment.SERVER_URL}images/search?limit=${params.countCats}${breedQuerry}`, {
+      headers: {
+        'x-api-key': environment.API_KEY
+      }
+    });
   }
 }

@@ -1,1 +1,5 @@
 <app-cats></app-cats>
+
+<div class="spinner-overlay" *ngIf="isLoading$ | async">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

@@ -2,3 +2,28 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   display: none;
 }
+.container {
+  background-color: rgb(197, 142, 91);
+  padding: 20px 0;
+  .form-filter {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 15px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .btn {
+    align-self: flex-start;
+    margin-top: 0.3em;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  mat-form-field {
+    width: 100px;
+  }
+}

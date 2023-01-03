@@ -1,31 +1,40 @@
 import { createReducer, on } from '@ngrx/store';
 import { ICatsState } from '../share/interfaces/cats-state.interface';
-import { getData, getCatsSuccess, getCatsError } from './actions';
+import * as CatsActions from './actions';
 
-export const initialState: ICatsState = {
+export const initialCatsState: ICatsState = {
   isLoading: false,
-  data: [[], []],
   cats: [],
   breeds: [],
   error: null,
+  params: null,
 };
 
 export const reducers = createReducer(
-  initialState,
-  on(getData, (state) => ({
+  initialCatsState,
+  on(CatsActions.getData, (state) => ({
     ...state,
-    isLoading: true
+    isLoading: true,
   })),
-  on(getCatsSuccess, (state, action) => ({
+  on(CatsActions.getDataSuccess, (state, { CatsAndBreeds }) => ({
     ...state,
     isLoading: false,
-    data: action.data,
-    cats: action.data[0],
-    breeds: action.data[1],
+    cats: CatsAndBreeds[0],
+    breeds: CatsAndBreeds[1],
   })),
-  on(getCatsError, (state, action) => ({
+  on(CatsActions.getCatsByBreed, (state, { params }) => ({
+    ...state,
+    isLoading: true,
+    params: params,
+  })),
+  on(CatsActions.getCatsByBreedSuccess, (state, { cats }) => ({
     ...state,
     isLoading: false,
-    error: action.error,
-  }))
+    cats: cats,
+  })),
+  on(CatsActions.getCatsError, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error: error,
+  })),
 );
