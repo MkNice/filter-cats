@@ -1,8 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IAppState } from 'src/app/share/interfaces/app-state.interface';
 import { ICatBreed } from 'src/app/share/interfaces/cat-breed.interface';
 import { IFilter } from 'src/app/share/interfaces/filter.interface';
 import { environment } from 'src/environments/environment';
+import { breedsSelector as catBreedsSelector } from 'src/app/store/selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-filter',
@@ -13,7 +17,7 @@ import { environment } from 'src/environments/environment';
 export class FilterComponent {
   @Output() dataFilter: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
-  public catBreeds: ICatBreed[] = [];
+  public catBreeds: Observable<ICatBreed[]> = this.store.select(catBreedsSelector);
 
   public filterForm: FormGroup = new FormGroup({
     breed: new FormControl(''),
@@ -24,6 +28,8 @@ export class FilterComponent {
   });
 
   public defaultFilterBreed: string = '';
+
+  constructor(private store: Store<IAppState>) { }
 
   public emitFilterData(): void {
     const currentBreed = this.filterForm.value.breed;

@@ -7,7 +7,7 @@
     <mat-label>Breed</mat-label>
     <mat-select formControlName="breed">
       <mat-option [value]="defaultFilterBreed">All</mat-option>
-      <mat-option *ngFor="let breed of catBreeds" [value]="breed.id">
+      <mat-option *ngFor="let breed of catBreeds | async" [value]="breed.id">
         {{ breed.name }}
       </mat-option>
     </mat-select>
