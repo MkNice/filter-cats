@@ -8,10 +8,10 @@ export const getData = createAction('[Cats] Get Data');
 export const getDataSuccess = createAction('[Cats] Get Data - Success',
   props<{ CatsAndBreeds: [ICat[], ICatBreed[]]; }>());
 
-export const getCatsByBreed = createAction('Cats Get Cats by breed',
+export const getCatsByBreed = createAction('[Cats] Get Cats by breed',
   props<{ params: IParams; }>());
 
-export const getCatsByBreedSuccess = createAction('Cats Get Cats by breed - Success',
+export const getCatsByBreedSuccess = createAction('[Cats] Get Cats by breed - Success',
   props<{ cats: ICat[]; }>());
 
 export const getCatsError = createAction('[Cats] Get Cats - Error',
