@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/cats/interfaces/app-state.interface';
@@ -11,16 +11,15 @@ import { IFilter } from './interfaces/filter.interface';
   selector: 'app-cats',
   templateUrl: './cats.component.html',
   styleUrls: ['./cats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class CatsComponent implements OnInit {
+export class CatsComponent {
   public cats$: Observable<ICat[]> = this.store.select(catsSelector);
 
-  constructor(private store: Store<IAppState>) { }
-
-  public ngOnInit(): void {
+  constructor(private store: Store<IAppState>) {
     this.getCats();
-  }
+   }
 
   private getCats(): void {
     this.store.dispatch(CatsActions.getData());

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { DataCatsService } from '../services/data-cats.service';
 import * as CatsActions from './actions';
 
@@ -12,8 +12,8 @@ export class CatsEffects {
   getData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CatsActions.getData),
-      mergeMap(() => {
-        return this.catsService.getCats().pipe(
+      switchMap(() => {
+        return this.catsService.getCatsWithBreeds().pipe(
           map((data) => CatsActions.getDataSuccess({ CatsAndBreeds: data })),
           catchError((error) => of(CatsActions.getCatsError({ error: error.message }))));
       }))
@@ -22,7 +22,7 @@ export class CatsEffects {
   getCatsByBreed$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CatsActions.getCatsByBreed),
-      mergeMap((data) => {
+      switchMap((data) => {
         return this.catsService.getCatsByBreed(data.params).pipe(
           map((cats) => CatsActions.getCatsByBreedSuccess({ cats: cats })),
           catchError((error) => of(CatsActions.getCatsError({ error: error.message }))));

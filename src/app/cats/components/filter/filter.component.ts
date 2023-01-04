@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/cats/interfaces/app-state.interface';
@@ -11,7 +11,8 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class FilterComponent {
@@ -27,15 +28,14 @@ export class FilterComponent {
     ])
   });
 
-  public defaultFilterBreed: string = '';
+  public readonly defaultFilterBreed: string = '';
 
   constructor(private store: Store<IAppState>) { }
 
   public emitFilterData(): void {
-    const currentBreed = this.filterForm.value.breed;
-    const amountCats = this.filterForm.value.amountCats;
+    const { currentBreed, amountCats } = this.filterForm.value;
 
-    this.dataFilter.next({
+    this.dataFilter.emit({
       amountCats: amountCats,
       currentBreed: currentBreed
     }
